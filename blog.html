@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Blog Question Solve</title>
+    <style>
+        .fonts{
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1 class="text-center my-10 text-2xl mx-16 md:text-5xl font-bold te">Discuss the scope of <span class="bg-gray-200 px-2 pb-1   p">var</span> ,<br class="md:hidden"> <br class="md:hidden "> <span class="bg-gray-200 px-2 pb-1  ">let</span> , and <span class="bg-gray-200 px-2 pb-1  ">const</span></h1>
+        <div class=" mx-16">
+            
+            <div>
+                <div>
+                    <h2 class="font-semibold text-3xl mb-5">Var</h2>
+                    <p class="font-normal text-xl text-justify">Before the advent of ES6,   <span class="bg-gray-200 px-2 pb-1  ">var</span> declarations ruled. There are issues associated with variables declared with <span class="bg-gray-200 px-2 pb-1  ">var</span> , though. That is why it was necessary for new ways to declare variables to emerge. First, let's get to understand <span class="bg-gray-200 px-2 pb-1  ">var</span> more before we discuss those issues.</p>
+                </div>
+                <div>
+                    <h2 class="font-semibold text-3xl my-5">Scope of var</h2>
+                    <p class="font-normal text-xl text-justify">Scope essentially means where these variables are available      for use. <span class="bg-gray-200 px-2 pb-1  ">var</span> declarations are globally scoped or function/locally scoped.
+
+                    The scope is global when a var variable is declared outside a function. This means that any variable that is declared with <span class="bg-gray-200 px-2 pb-1  ">var</span> outside a function block is available for use in the whole window.
+                        
+                    <span class="bg-gray-200 px-2 pb-1  ">var</span> is function scoped when it is declared within a function. This means that it is available and can be accessed only within that function.
+                    <br><br>   
+                    Here, <span class="bg-gray-200 px-2 pb-1  ">greeter</span> is globally scoped because it exists outside a function while <span class="bg-gray-200 px-2 pb-1  ">hello</span> is function scoped. So we cannot access the variable <span class="bg-gray-200 px-2 pb-1  ">hello</span> outside of a function. So if we do this: </p>
+                    <div>
+                        <p class="bg-gray-200  p-5 my-3 font-normal text-xl ">var greeter = "hey hi"; <br>
+        
+                            function newFunction() { <br>
+                                var hello = "hello";  <br>
+                            } <br>
+                            console.log(hello); <br> // error: hello is not defined 
+                        </p>
+                    </div>
+                    <p class="font-normal text-xl text-justify">We'll get an error which is as a result of <span class="bg-gray-200 px-2 pb-1  ">hello</span> not being available outside the function.</p>
+                </div>
+                <div>
+                    <h2 class="font-semibold text-3xl my-5">Var variables can be re-declared and updated</h2>
+                    
+                    <p class="font-normal text-xl text-justify">This means that we can do this within the same scope and won't get an error.</p>
+                    <div>
+                        <p class="bg-gray-200  p-5 my-3 font-normal text-xl ">        
+                            var greeter = "hey hi"; <br>
+                            var greeter = "say Hello instead"; <br><br>
+                            //and this also <br>
+                            var greeter = "hey hi"; <br>
+                            greeter = "say Hello instead";
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    
+                    <h2 class="font-semibold text-3xl my-5">Hoisting of var</h2>
+                    <p class="font-normal text-xl text-justify">Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their scope before code execution. This means that if we do this:</p>
+                    <div>
+                        <p class="bg-gray-200  p-5 my-3 font-normal text-xl ">        
+                            console.log (greeter); <br>
+                            var greeter = "say hello" <br><br>
+                            //it is interpreted as this: <br>
+                            var greeter; <br>
+                            console.log(greeter); // greeter is undefined <br>
+                            greeter = "say Hello instead";
+                        </p>
+                    </div>
+                    <p class="font-normal text-xl text-justify">So <span class="bg-gray-200 px-2 pb-1  ">var</span> variables are hoisted to the top of their scope and initialized with a value of <span class="bg-gray-200 px-2 pb-1  ">undefined</span>.</p>
+                </div>
+                <div>
+                    
+                    <h2 class="font-semibold text-3xl my-5">Problem with var</h2>
+                    <p class="font-normal text-xl text-justify">There's a weakness that comes with  var. I'll use the example below to explain:</p>
+                    <div>
+                        <p class="bg-gray-200  p-5 my-3 font-normal text-xl ">        
+                            var greeter = "hey hi"; <br>
+                            var times = 4; <br>
+
+                            if (times > 3) {<br>
+                                var greeter = "say Hello instead"; <br>
+                            } <br>
+                            
+                            console.log(greeter) // "say Hello instead"
+                        </p>
+                    </div>
+                    <p class="font-normal text-xl text-justify">So, since times > 3 returns true, greeter is redefined  to "say Hello instead". While this is not a problem if you knowingly want greeter to be redefined, it becomes a problem when you do not realize that a variable greeter has already been defined before. <br><br>
+
+                    If you have used <span class="bg-gray-200 px-2 pb-1  ">greeter</span> in other parts of your code, you might be surprised at the output you might get. This will likely cause a lot of bugs in your code. This is why <span class="bg-gray-200 px-2 pb-1  ">let</span> and <span class="bg-gray-200 px-2 pb-1  ">const</span> are necessary.>.</p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <h2 class="font-semibold text-3xl my-5">let</h2>
+                    <p class="font-normal text-xl text-justify"><span class="bg-gray-200 px-2 pb-1 ">let</span> is now preferred for variable declaration. It's no surprise as it comes as an improvement to <span class="bg-gray-200 px-2 pb-1  ">var</span> declarations. It also solves the problem with <span class="bg-gray-200 px-2 pb-1  ">var</span> that we just covered. Let's consider why this is so.</p>
+                </div>
+                <div>
+                    <h2 class="font-semibold text-3xl my-5">let is block scoped</h2>
+                    <p class="font-normal text-xl text-justify"> A block is a chunk of code bounded by {}. A block lives in curly braces. Anything within curly braces is a block. <br> <br>
+
+                    So a variable declared in a block with <span class="bg-gray-200 px-2 pb-1  ">let</span>  is only available for use within that block. Let me explain this with an example:</p>
+                    <div>
+                        <p class="bg-gray-200  p-5 my-3 font-normal text-xl ">        
+                            let greeter = "hey hi"; <br>
+                            let times = 4; <br>
+
+                            if (times > 3) {<br>
+                                let greeter = "say Hello instead"; <br>
+                                console.log(hello);// "say Hello instead" <br>
+                            } <br>
+                            
+                            console.log(hello) // hello is not defined
+                        </p>
+                        <p class="font-normal text-xl text-justify">We see that using <span class="bg-gray-200 px-2 pb-1  ">hello</span> outside its block (the curly braces where it was defined) returns an error. This is because <span class="bg-gray-200 px-2 pb-1  ">let</span> variables are block scoped .</p>
+                            <div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="font-semibold text-3xl my-5">let can be updated but not re-declared.</h2>
+                    
+                    <p class="font-normal text-xl text-justify">Just like <span class="bg-gray-200 px-2 pb-1  ">var</span>,  a variable declared with let can be updated within its scope. Unlike <span class="bg-gray-200 px-2 pb-1  ">var</span>, a <span class="bg-gray-200 px-2 pb-1  ">let</span> variable cannot be re-declared within its scope. So while this will work:</p>
+                    <div>
+                        <p class="bg-gray-200  p-5 my-3 font-normal text-xl ">        
+                            let greeter = "hey hi"; <br>
+                             greeter = "say Hello instead"; <br><br>
+                            //this will return an error: <br>
+                            let greeter = "hey hi"; <br>
+                            let greeter = "say Hello instead"; <br>
+                            // error: Identifier 'greeting' has already been declared <br><br>
+                            However, if the same variable is defined in different scopes, there will be no error: <br> <br>
+                            let greeting = "say Hi"; <br>
+                            if (true) { <br>
+                                let greeting = "say Hello instead"; <br>
+                                console.log(greeting); // "say Hello instead" <br>
+                            } <br>
+                            console.log(greeting); // "say Hi"
+                        </p>
+                    </div>
+                    <p class="font-normal text-xl text-justify">Why is there no error? This is because both instances are treated as different variables since they have different scopes. <br>
+
+                    This fact makes <span class="bg-gray-200 px-2 pb-1  ">let</span> a better choice than <span class="bg-gray-200 px-2 pb-1  ">var</span>. When using let, you don't have to bother if you have used a name for a variable before as a variable exists only within its. <br>
+                        
+                    Also, since a variable cannot be declared more than once within a scope, then the problem discussed earlier that occurs with <span class="bg-gray-200 px-2 pb-1  ">var</span> does not happen.</p>
+                </div>
+                <div>
+                    <h2 class="font-semibold text-3xl my-5">Hoisting of let</h2>
+                    <p class="font-normal text-xl text-justify">Just like  <span class="bg-gray-200 px-2 pb-1  ">var</span>, <span class="bg-gray-200 px-2 pb-1  ">let</span> declarations are hoisted to the top. Unlike var which is initialized as <span class="bg-gray-200 px-2 pb-1  ">undefined</span>, the <span class="bg-gray-200 px-2 pb-1  ">let</span> keyword is not initialized. So if you try to use a <span class="bg-gray-200 px-2 pb-1  ">let</span> variable before declaration, you'll get a <span class="bg-gray-200 px-2 pb-1  ">Reference Error</span>.</p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <h2 class="font-semibold text-3xl my-5">Const</h2>
+                    <p class="font-normal text-xl text-justify">Variables declared with the <span class="bg-gray-200 px-2 pb-1 ">const</span> maintain constant values. <span class="bg-gray-200 px-2 pb-1 ">const</span> declarations share some similarities with <span class="bg-gray-200 px-2 pb-1 ">let</span> declarations.</p>
+                </div>
+                <div>
+                    <h2 class="font-semibold text-3xl my-5">const declarations are block scoped</h2>
+                    <p class="font-normal text-xl text-justify">Like <span class="bg-gray-200 px-2 pb-1 ">let</span> declarations, <span class="bg-gray-200 px-2 pb-1 ">const</span> declarations can only be accessed within the block they were declared.</p>
+                </div>
+                <div>
+                    <h2 class="font-semibold text-3xl my-5">const cannot be updated or re-declared</h2>
+                    <p class="font-normal text-xl text-justify">This means that the value of a variable declared with <span class="bg-gray-200 px-2 pb-1 ">const</span> remains the same within its scope. It cannot be updated or re-declared. So if we declare a variable with <span class="bg-gray-200 px-2 pb-1 ">const</span>, we can neither do this:</p>
+                    <div>
+                        <p class="bg-gray-200  p-5 my-3 font-normal text-xl ">
+                            const greeting = "say Hi"; <br>
+        
+                            greeting = "say Hello instead";<br>
+                            // error: Assignment to constant variable.  
+                             
+                        </p>
+                    </div>
+                    <p class="font-normal text-xl text-justify">Every <span class="bg-gray-200 px-2 pb-1 ">const</span> declaration, therefore, must be initialized at the time of declaration.: <br>
+                    This behavior is somehow different when it comes to objects declared with <span class="bg-gray-200 px-2 pb-1 ">const</span>. While a <span class="bg-gray-200 px-2 pb-1 ">const</span> object cannot be updated, the properties of this objects can be updated. Therefore, if we declare a <span class="bg-gray-200 px-2 pb-1 ">const</span> object as this:
+                    </p>
+                    <div>
+                        <p class="bg-gray-200  p-5 my-3 font-normal text-xl ">
+                            const greeting = { <br>
+                                message: "say Hi", <br>
+                                times: 4 <br>
+                            }  <br><br>
+                             while we cannot do this:  <br><br>
+                            greeting = { <br>
+                                words: "Hello",<br>
+                                number: "five"<br>
+                            } // error:  Assignment to constant variable. <br> <br>
+                            we can do this: <br>
+                            greeting.message = "say Hello instead"; 
+                            
+                             
+                        </p>
+                    </div>
+                    <p class="font-normal text-xl text-justify">This will update the value of <span class="bg-gray-200 px-2 pb-1 ">greeting.message</span> without returning errors.</p>
+                </div>
+                <div class="mb-20">
+                    <h2 class="font-semibold text-3xl my-5">Hoisting of const
+                    </h2>
+                    <p class="font-normal text-xl text-justify">Just like <span class="bg-gray-200 px-2 pb-1  ">let</span>, <span class="bg-gray-200 px-2 pb-1  ">const</span> declarations are hoisted to the top but are not initialized. <br>
+
+                    So just in case you missed the differences, here they are: <br>
+                
+                        <li>var declarations are globally scoped or function scoped while let and const are block scoped.</li>
+                        <li>var variables can be updated and re-declared within its scope; let variables can be updated but not re-declared; const variables can neither be updated nor re-declared.</li>
+                        <li>They are all hoisted to the top of their scope. But while var variables are initialized with undefined, let and const variables are not initialized.</li>
+                        <li>While var and let can be declared without being initialized, const must be initialized during declaration.</li>
+                
+                </p> 
+                    
+
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    <section>
+        <h1 class="text-center my-10 text-2xl mx-16 md:text-5xl font-bold te">Tell us the use cases of  <span class="bg-gray-200 px-2 pb-1   p">null</span> and <span class="bg-gray-200 px-2 pb-1  ">undefined</span></h1>
+        <div class=" mx-16">
+            <div>
+                <div>
+                    <h2 class="font-semibold text-3xl my-5">Null vs. Undefined in JavaScript</h2>
+                    <p class="font-normal text-xl text-justify">In JavaScript, <span class="bg-gray-200 px-2 pb-1  ">null</span> and <span class="bg-gray-200 px-2 pb-1  ">undefined</span> data types may appear similar when viewed at an abstract level. As a result, developers often need clarification and help when debugging errors related to these two values. <br> <br>
+
+                        This article will go through the definitions of <span class="bg-gray-200 px-2 pb-1  ">null</span> and <span class="bg-gray-200 px-2 pb-1  ">undefined</span> along with their similarities, fundamental differences, and how you could utilize each of these values in your program..</p>
+                </div>
+                <div>
+                    <h2 class="font-semibold text-3xl my-5">What is Null?</h2>
+                    <p class="font-normal text-xl text-justify">The primitive type <span class="bg-gray-200 px-2 pb-1  ">null</span> indicates the intentional absence of a value. Therefore, in JavaScript, programmers often assign <span class="bg-gray-200 px-2 pb-1  ">null</span> to a variable to denote that the variable is declared and initialized and currently doesn’t hold a value. Still, a value can be expected in the future. <br> <br>
+
+                        
+                    The following code snippet shows how to assign <span class="bg-gray-200 px-2 pb-1  ">null</span> data type to a variable.</p> <br>
+                    <div>
+                        <p class="bg-gray-200  p-5 my-3 font-normal text-xl ">
+                            var nullVar = null; <br>
+
+                            console.log("Initial value of nullVar is ", nullVar); <br>
+                            /*Result: Initial value of nullVar is null */   
+                             
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="font-semibold text-3xl my-5">What is Undefined?</h2>
+                    <p class="font-normal text-xl text-justify"><span class="bg-gray-200 px-2 pb-1  ">Udefined</span> is a primitive value automatically assigned by JavaScript to indicate the unintentional absence of any object value.. <br> <br>
+
+                        
+                        Some of the situations where JavaScript assigns the value <span class="bg-gray-200 px-2 pb-1  ">undefined</span> are: </p> <br>
+                    <div>
+                        <p class="bg-gray-200  p-5 my-3 font-normal text-xl ">
+                            //A variable declared without a value assigned. <br>
+
+                            var undefinedVar; <br>
+                            console.log("The value of undefinedVar is ",undefinedVar); <br>
+                            /*Result: The value of undefinedVar is undefined.*/ 
+                             
+                        </p>
+                    </div>
+                </div>
+                <div class="mb-20">
+                    <p class="font-normal text-xl text-justify">This statement will be evaluated as <span class="bg-gray-200 px-2 pb-1  ">false</span> if the variable undeclaredVar is: <br>
+
+                        So just in case you missed the differences, here they are: <br>
+                    
+                            <li>Not declared.</li>
+                            <li>Declared but not initialized (undefined).</li>
+                            <li>Declared but initialized to <span class="bg-gray-200 px-2 pb-1   p">null</span>  or <span class="bg-gray-200 px-2 pb-1  ">undefined</span>.</li>
+                    
+                    </p>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        
+    </section>
+    <section>
+        <h1 class="text-center my-10 text-2xl mx-16 md:text-5xl font-bold te">What do you mean by <span class="bg-gray-200 px-2 pb-1   p">REST API</span> ?  </h1>
+        <div class=" mx-16">
+
+            <div>
+                <h2 class="font-semibold text-3xl my-5">What is a REST API?</h2>
+                <p class="font-normal text-xl text-justify">There are numerous types of APIs, making it difficult for new developers to differentiate between each kind. In particular, Representational State Transfer (REST) is a software architectural style that developers apply to web APIs. REST APIs provide simple, uniform interfaces because they can be used to make data, content, algorithms, media, and other digital resources available through web URLs. Essentially, REST APIs are the most common APIs used across the web today.</p>
+            </div>
+            <div>
+                <h2 class="font-semibold text-3xl my-5">How do REST APIs work?</h2>
+                <p class="font-normal text-xl text-justify">To understand how REST APIs work, it is critical to understand resources. A resource can be any information that could be named, such as a document or image, a collection of other resources, a non-virtual object, and more. Meanwhile, REST uses a resource identifier to recognize the specific resource involved in an interaction between components. <br><br>
+
+                The method is the type of request you send to the server. The four main resource methods that are associated with REST APIs are:</p>
+                <div class="mt-5 mb-20">
+                    <li class="my-2"><span class="font-medium text-lg">GET :</span> This method allows for the server to find the data you requested and sends it back to you.</li>
+                    <li class="my-2"><span class="font-medium text-lg">PUT :</span> If you perform the ‘PUT’ request, then the server will update an entry in the database.</li>
+                    <li class="my-2"><span class="font-medium text-lg">POST :</span> This method permits the server to create a new entry in the database.</li>
+                    <li class="my-2"><span class="font-medium text-lg">DELETE : </span> This method allows the server to delete an entry in the database.</li>
+                </div>
+            </div>
+
+
+
+        </div>
+        
+    </section>
+</body>
+</html>
